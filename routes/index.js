@@ -10,7 +10,9 @@ router.get('/',homeController.home);//calling homeController.actionName
 
 router.use('/users',require('./users'));//handles users request
 /*here index.js router acts as a centre hub for all other routes it directs to routes in  users.js  
-for any further routes,access from here
+for any further routes,access from http://localhost:8000/users/ 
+example for profile 
+http://localhost:8000/users/profile
  router.use('/routerName',require('./routerfile')); */
 
 module.exports= router; //it will get exported to index.js in main folder
