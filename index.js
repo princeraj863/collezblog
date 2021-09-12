@@ -49,6 +49,9 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+//it will check if session cookie is present or not
+app.use(passport.setAuthenticatedUser);
+
 // use express router
 app.use('/',require('./routes'));
 
