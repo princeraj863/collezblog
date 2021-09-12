@@ -9,6 +9,7 @@
  const session =require('express-session');
  const passport = require('passport');
  const passportLocal = require('./config/passport-local-strategy');
+const MongoStore = require('connect-mongo');
  
  app.use(express.urlencoded());
  /* app.use whenever used then it means middleware is called
@@ -17,7 +18,15 @@
 
 app.use(cookieParser());
 
+app.use(express.static('assets'));
+/* it will look for folder named assets in the directory and
+look for static file like html,css,js
+in home.ejs just link href ="/css/home.css" as it will look in assets folder for html,css and js
+ 
+*/
 
+
+//app.use(expressLayouts);
 //extract style and scripts from sub pages into the layout
 app.set('layout extractStyles',true);
 app.set('layout extractScripts',true);
@@ -34,6 +43,7 @@ app.set('views','./views');//here not used path.join like that as we can do it l
 
 
 // to use express session
+//mongo store is used to store the session cookie in the db
 app.use(session({
    name : 'coolzblog',
    //TODO change the secret before deployment in production mode
@@ -43,7 +53,16 @@ app.use(session({
    cookie:{
      maxAge:(1000*60*100)// here time measured in milli second i.e 1e-3
      //till the login session expire
-   }
+   },
+  store : new MongoStore(
+      {
+        mongoUrl: 'mongodb://localhost/coolzblog_db',
+        autoRemove : 'disabled'//do  you want this to removed automatically
+      },
+      function(err){ // callback function
+         console.log(err || 'connect-mongodb setup ok');
+      }
+   )
 }));
 
 app.use(passport.initialize());
@@ -55,17 +74,7 @@ app.use(passport.setAuthenticatedUser);
 // use express router
 app.use('/',require('./routes'));
 
-app.use(express.static('assets'));
-/* it will look for folder named assets in the directory and
-look for static file like html,css,js
-in home.ejs just link href ="/css/home.css" as it will look in assets folder for html,css and js
- 
-*/
-
-
-
-
- app.listen(port,function(err){
+app.listen(port,function(err){
  
     if(err){
         console.log(`error in running the server:${port}`);
