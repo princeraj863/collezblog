@@ -13,6 +13,11 @@ module.exports.profile = function(req,res){ //http://localhost:8000/users/profil
 //render the sign up page
 module.exports.signUp =function(req,res){
 
+    //if user is authenticated then it won't be able to go on sign up page  
+    if(req.isAuthenticated()){
+        res.redirect('/users/profile');
+    }
+
     return res.render('user_sign_up',{
             title :"Coolzblog | Sign Up"
     });
@@ -20,6 +25,11 @@ module.exports.signUp =function(req,res){
 
 // render the sign in page
 module.exports.signIn =function(req,res){
+
+    //if user is authenticated then it won't be able to go on sign in page  
+    if(req.isAuthenticated()){
+        res.redirect('/users/profile');
+    }
 
     return res.render('user_sign_in',{
             title :"Coolzblog | Sign In"
