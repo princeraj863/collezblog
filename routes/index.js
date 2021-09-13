@@ -15,4 +15,6 @@ example for profile
 http://localhost:8000/users/profile
  router.use('/routerName',require('./routerfile')); */
 
+ router.use('/posts',require('./post'));
+
 module.exports= router; //it will get exported to index.js in main folder
