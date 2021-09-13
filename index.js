@@ -9,7 +9,18 @@
  const session =require('express-session');
  const passport = require('passport');
  const passportLocal = require('./config/passport-local-strategy');
-const MongoStore = require('connect-mongo');
+ const MongoStore = require('connect-mongo');
+
+ const sassMiddleware = require('node-sass-middleware');
+
+ app.use(sassMiddleware({
+     src: '/assets/scss',
+     dest:'/assets/css', // to put that css compiled file to this destination
+     debug:true,//errors you see when compilation error , during production turn it off
+     outputStyle:'extended',//i want it to be simple , not minified i.e  in single line
+     prefix:'/css'
+ //which folder to start looking for in starting ,example "/css/layout.css" here /css is prefix folder
+ }));
  
  app.use(express.urlencoded());
  /* app.use whenever used then it means middleware is called
