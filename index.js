@@ -26,7 +26,7 @@ in home.ejs just link href ="/css/home.css" as it will look in assets folder for
 */
 
 
-//app.use(expressLayouts);
+app.use(expressLayouts);
 //extract style and scripts from sub pages into the layout
 app.set('layout extractStyles',true);
 app.set('layout extractScripts',true);

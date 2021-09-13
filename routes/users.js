@@ -21,4 +21,7 @@ router.post('/create-session',passport.authenticate(
 if it is done then usersController.createSession is called otherwise  failureRedirect: '/users/sign-in' 
 gets called*/
 
+
+router.get('/sign-out',usersController.destroySession);
+
 module.exports = router;
