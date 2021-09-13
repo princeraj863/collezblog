@@ -14,8 +14,8 @@
  const sassMiddleware = require('node-sass-middleware');
 
  app.use(sassMiddleware({
-     src: '/assets/scss',
-     dest:'/assets/css', // to put that css compiled file to this destination
+     src: './assets/scss',
+     dest:'./assets/css', // to put that css compiled file to this destination
      debug:true,//errors you see when compilation error , during production turn it off
      outputStyle:'extended',//i want it to be simple , not minified i.e  in single line
      prefix:'/css'

@@ -1,10 +1,17 @@
 <header>
+  <link rel="stylesheet" href="/css/header.css">
   Page Header 
+  <div class="navbar">
+
+  <div>
+    <h3>Coolzblog</h3>
+  </div>
+  <div>
   <ul>
    <% if(locals.user){ %>
     <li>
       <a href="/users/profile">
-    <%= user.name %>
+    profile
     </a>
 
     </li>
@@ -27,5 +34,6 @@
 
 
   </ul>
-
+</div>
+</div>
 </header>
