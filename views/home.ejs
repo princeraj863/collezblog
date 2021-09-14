@@ -9,11 +9,14 @@
 
         <section id="feed-posts">
             <h4>Posts </h4>
+            <% if(locals.user){%> <!--this won't work as if user knows route 
+                and object id then in inspect it can add form and make the post so, we add authentication
+            on route side   passport.checkAuthentication which is define already-->
             <form action="/posts/create" id="new-post-form" method="POST">
                 <textarea  name="content" cols="30" rows="3" placeholder="Type Here."></textarea>
               <input type="submit" value="Post">
             </form>
-
+       <% }  %>
 
             <div id="posts-list-container">
                 <ul>
