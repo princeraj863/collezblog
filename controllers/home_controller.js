@@ -16,7 +16,15 @@ module.exports.home = function(req,res){
 
     //populate the user of each post i.e we can now get get posts.user.name 
 
-    Post.find({}).populate('user').exec(function(err,posts){
+    Post.find({})
+    .populate('user')
+    .populate({
+        path:'comments', //nested populating , to get comment and user of that comment
+        populate:{
+            path:'user'// further populate user , this way we acn do further population
+        }
+    })
+    .exec(function(err,posts){
         return res.render('home',{
                     title : "Home",
                     posts :posts
