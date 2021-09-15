@@ -24,3 +24,22 @@ module.exports.create = function(req,res){
     });
 
 }
+
+module.exports.destroy = function(req,res){
+    Comment.findById(req.params.id,function(err,comment){
+//console.log(req.user.id); it's from passport.js , object is req.user inside it authentication info are stored
+//console.log(comment);in this that comment whole info is stored which got found 
+     if(comment.user==req.user.id){
+         let postId = comment.post; 
+         // before deleting comment we keep postid of this commment, we keep it in variable 
+         //to delete comment from the post db by using postid
+
+         comment.remove();
+         Post.findByIdAndUpdate(postId,{$pull:{comments:req.params.id}},function(err,post){ //it pulls out that comment given 
+             return res.redirect('back');
+         });
+     }else{
+         return res.redirect('back');
+     }
+    });
+}
