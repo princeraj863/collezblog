@@ -10,9 +10,10 @@
   <ul>
    <% if(locals.user){ %>
     <li>
-      <a class="a_nav" href="/users/profile">
-    profile
-    </a>
+      <!--<a class="a_nav" href="/users/profile/">
+    <%=user.name %> 
+    </a>  -->
+    <a href="/users/profile/<%=user.id %>"><%= user.name %> </a>
 
     </li>
     <li>

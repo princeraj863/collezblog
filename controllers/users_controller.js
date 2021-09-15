@@ -5,9 +5,14 @@ const User = require('../models/user'); // Requiring database
 
 module.exports.profile = function(req,res){ //http://localhost:8000/users/profile
     
-     return res.render('user_profile',{
-          title : 'User Profile'
-     });
+    User.findById(req.params.id,function(err,user){
+        return res.render('user_profile',{ // here it renders user_profile.ejs view/template
+            //it's view destination is set in index.js file 
+            title : 'User Profile',
+            profile_user: user //we can't use the word user as it'skeyword in locals
+       });
+    });
+     
 }
 
 //render the sign up page
