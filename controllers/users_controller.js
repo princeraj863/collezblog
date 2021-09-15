@@ -15,6 +15,19 @@ module.exports.profile = function(req,res){ //http://localhost:8000/users/profil
      
 }
 
+module.exports.update = function(req,res){
+    if(req.user.id==req.params.id){ // if not done then from inspect user with any other object id can change any other info
+        User.findByIdAndUpdate(req.params.id,req.body,function(err,user){
+            /* here User.findByIdAndUpdate(req.params.id,{name:req.body.name,email:req.body.email},function(err,user)
+            using req.body instead by simplicity
+            */
+            return res.redirect('back');
+        });
+    }else{
+        return res.status(401).send('Unauthorized');
+    }
+}
+
 //render the sign up page
 module.exports.signUp =function(req,res){
 
@@ -73,3 +86,4 @@ module.exports.destroySession = function(req,res){
 
     return res.redirect('/');
 }
+
