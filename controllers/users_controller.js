@@ -78,11 +78,17 @@ module.exports.create = function(req,res){
 
 //sign in and create a session for the user
 module.exports.createSession = function(req,res){
+    req.flash('success','Logged in Successfully');//in req object adding flash object with type=success 
+    /* to send flash message to res we have to write explicitly eveytime for flash message
+      return res.redirect('/',{flash:{success:""}});
+      hence for simplicity we create our custom middleware in config folder with file name middleware.js
+    */
     return res.redirect('/');
 }
 
 module.exports.destroySession = function(req,res){
     req.logout();
+    req.flash('success','You have looged out');
 
     return res.redirect('/');
 }
