@@ -5,7 +5,7 @@
 const Post = require("../models/post");
 const User = require('../models/user');
 
-//to export a function which is publicly available to routes
+/*//to export a function which is publicly available to routes
 module.exports.home = function(req,res){
     
     // Post.find({},function(err,posts){  TO COMMENT ALL SELECTED LINE USE CTRL +K+C
@@ -39,4 +39,35 @@ module.exports.home = function(req,res){
     });
 
     
+}*/
+
+//turning above code to async and await
+
+module.exports.home = async function(req,res){// async declares that inside await will be used
+
+    try{
+
+        //populate the user of each post i.e we can now get get posts.user.name 
+
+   let posts= await Post.find({})
+    .populate('user')
+    .populate({
+        path:'comments', //nested populating , to get comment and user of that comment
+        populate:{
+            path:'user'// further populate user , this way we acn do further population
+        }
+    });
+
+    let users = await User.find({});
+
+    return res.render('home',{
+        title : "Home",
+        posts :posts,
+        all_users:users
+ });
+
+    }catch(err){
+
+    }
+
 }
