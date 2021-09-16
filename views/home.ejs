@@ -1,17 +1,13 @@
-<html>
-    <head>
-        <title>
-            <%= title %>
-        </title>
-    </head>
-    <body>
-        <h1> coolzblog /  <%= title %> </h1>
 
-        <section id="feed-posts">
-            <h4>Posts </h4>
+<link rel="stylesheet" href="/css/home.css">
+        
+  <div class="home_container">
+
+           <section id="feed-posts">
+            <h3>Posts </h3>
             <% if(locals.user){%> <!--this won't work as if user knows route 
                 and object id then in inspect it can add form and make the post so, we add authentication
-            on route side   passport.checkAuthentication which is define already-->
+            on route side   passport.checkAuthentication which is defined already-->
             <form action="/posts/create" id="new-post-form" method="POST">
                 <textarea  name="content" cols="30" rows="3" placeholder="Type Here."></textarea>
               <input type="submit" value="Post">
@@ -30,8 +26,8 @@
 
             </div>
         </section>
-    </body>
-</html>
+
+
 
 <section id="user-friends">
 
@@ -45,4 +41,6 @@
 
    <% } %>
 </section>
+
+</div>
 

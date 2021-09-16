@@ -29,7 +29,7 @@
 
 app.use(cookieParser());
 
-app.use(express.static('assets'));
+app.use(express.static('./assets'));
 /* it will look for folder named assets in the directory and
 look for static file like html,css,js
 in home.ejs just link href ="/css/home.css" as it will look in assets folder for html,css and js
