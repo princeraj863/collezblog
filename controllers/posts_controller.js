@@ -4,10 +4,21 @@ const Comment = require('../models/comment');
 module.exports.create = async function(req,res){
    
   try{
-    await Post.create({
+   let post = await Post.create({
        content : req.body.content,
        user : req.user._id
   });
+
+      if(req.xhr){ // to check if the request is ajax ,request type of ajax request is xmlHttpRequest i.e xhr
+        return res.status(200).json({ //returning json 
+            data:{
+              post:post
+            },
+            message :"Post created!" // adding  message to json data;
+        });
+
+      }
+
   req.flash('success','Post Published'); // key , value  uses middleware defined by us
     return res.redirect('back');
   }catch(err){
