@@ -6,19 +6,20 @@ const User = require('../models/user');
 //authenticating using passport, see passport.js username & password section
 
 passport.use(new LocalStrategy({
-   usernameField :'email'
+   usernameField :'email',
+   passReqToCallback:true // adding req to parameter with email, passowrd, done
    },
-   function(email,password,done){  // here done is callback function , it's reporting back for passport.js
+   function(req,email,password,done){  // here done is callback function , it's reporting back for passport.js
        //find a user and establish the identity
        User.findOne({email:email},function(err,user){ //1st email is data user email i.e stored in db,
         // 2nd email is vaue  which is passed on  function parameter  
             if(err){
-                console.log('Error in finding user -->Passport');
+                req.flash('error',err);//using middleware.js that we created
                 return done(err);
             }
 
             if(!user || user.password !=password){
-                console.log('Invalid Username/Password');
+                req.flash('error','Invalid Username/Password');//using middleware.js that we created
                 return done(null,false);
             }
             return done(null,user);//returning user , which can be used in serialiser
