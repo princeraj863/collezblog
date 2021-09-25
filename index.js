@@ -12,7 +12,7 @@
  const MongoStore = require('connect-mongo');
 
  const sassMiddleware = require('node-sass-middleware');
- const flash = require('connect-flash');
+ const flash = require('connect-flash'); // for flash message 
  const customMware = require('./config/middleware');
 
  app.use(sassMiddleware({

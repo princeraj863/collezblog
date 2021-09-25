@@ -1,9 +1,11 @@
-<li>
+<li id="post-<%= post._id %>">  <!--added id because at some point to delete this post we need id assigned to it-->
     <p>
        
     <%    if(locals.user && locals.user.id===post.user.id){  %>
         <small>
-            <a href="/posts/destroy/<%= post.id %>">X</a>
+            <a href="/posts/destroy/<%= post.id %>">X</a> 
+            <!--add class to this delete button so that we can add click listner to it 
+                to delte it using ajax and add styling-->
         </small>
    <% }  %>
         <%= post.content %>

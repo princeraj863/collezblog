@@ -9,16 +9,18 @@ module.exports.profile = function(req,res){ //http://localhost:8000/users/profil
         return res.render('user_profile',{ // here it renders user_profile.ejs view/template
             //it's view destination is set in index.js file 
             title : 'User Profile',
-            profile_user: user //we can't use the word user as it'skeyword in locals
+            profile_user: user //we can't use the word 'user' as it's keyword in locals
        });
     });
      
 }
 
 module.exports.update = function(req,res){
-    if(req.user.id==req.params.id){ // if not done then from inspect user with any other object id can change any other info
+    if(req.user.id==req.params.id){ 
+        // if not done then from inspect user with any other object id can change any other info
         User.findByIdAndUpdate(req.params.id,req.body,function(err,user){
-            /* here User.findByIdAndUpdate(req.params.id,{name:req.body.name,email:req.body.email},function(err,user)
+            /* here User.findByIdAndUpdate(req.params.id,{name:req.body.name,email:req.body.email},
+                function(err,user)
             using req.body instead by simplicity
             */
             return res.redirect('back');
@@ -66,11 +68,12 @@ module.exports.create = function(req,res){
         if(!user){
           User.create(req.body,function(err,user){
               if(err){console.log('error in creating user while signing up'); return;}
-
+              
               return res.redirect('/users/sign-in');
           })
         }
         else{
+            req.flash('error','Email already exist');
             return res.redirect('back');
         }
     });

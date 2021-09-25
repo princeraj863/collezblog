@@ -15,7 +15,7 @@ module.exports.create = function(req,res){
                 post.comments.push(comment);
                  
                 post.save();//it tells the database it's final version so save it, before that it remains in ram
-
+                req.flash('success','comment created');
                  res.redirect('/');
              }
              
@@ -35,6 +35,7 @@ module.exports.destroy = function(req,res){
          //to delete comment from the post db by using postid
 
          comment.remove();
+         req.flash('success','comment removed successfully');
          Post.findByIdAndUpdate(postId,{$pull:{comments:req.params.id}},function(err,post){ //it pulls out that comment given 
              return res.redirect('back');
          });

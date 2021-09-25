@@ -1,5 +1,3 @@
-
-
 // module.exports.actionName = function(req,res){} 
 
 const Post = require("../models/post");
@@ -50,11 +48,12 @@ module.exports.home = async function(req,res){// async declares that inside awai
         //populate the user of each post i.e we can now get get posts.user.name 
 
    let posts= await Post.find({})
+   .sort('-createdAt') //sort the post according to the nearest post created by me by time  i.e nearest to me
     .populate('user')
     .populate({
         path:'comments', //nested populating , to get comment and user of that comment
         populate:{
-            path:'user'// further populate user , this way we acn do further population
+            path:'user'// further populate user , this way we can do further population
         }
     });
 
