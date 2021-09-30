@@ -58,6 +58,7 @@ module.exports.home = async function(req,res){// async declares that inside awai
     });
 
     let users = await User.find({});
+    //console.log(posts);
 
     return res.render('home',{
         title : "Home",

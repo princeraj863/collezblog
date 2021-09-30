@@ -3,12 +3,12 @@
        
     <%    if(locals.user && locals.user.id===post.user.id){  %>
         <small>
-            <a href="/posts/destroy/<%= post.id %>">X</a> 
+            <a class="delete-post-button" href="/posts/destroy/<%= post.id %>">X</a> 
             <!--add class to this delete button so that we can add click listner to it 
                 to delte it using ajax and add styling-->
         </small>
    <% }  %>
-        <%= post.content %>
+        <%= post.content %> 
         <br>
         <small>
             <%= post.user.name %>
@@ -17,7 +17,7 @@
     </p>
     <div class="post_comments">
         <% if(locals.user){ %>
-        <form action="/comments/create" method="POST">
+        <form action="/comments/create" id="new-comment-form" method="POST">
             <input type="text" name="content" placeholder="Type Here to add comment..">
             <input type="hidden" name="post" value="<%= post._id %>">
             <input type="submit" value="Add Comment">
