@@ -38,6 +38,8 @@ in home.ejs just link href ="/css/home.css" as it will look in assets folder for
  
 */
 
+//make the uploads path available to the browser
+app.use('/uploads',express.static(__dirname +'/uploads'));
 
 app.use(expressLayouts);
 //extract style and scripts from sub pages into the layout
