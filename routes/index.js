@@ -18,4 +18,6 @@ http://localhost:8000/users/profile
  router.use('/posts',require('./post'));
  router.use('/comments',require('./comments'));
 
+ router.use('/api',require('./api'));
+
 module.exports= router; //it will get exported to index.js in main folder
