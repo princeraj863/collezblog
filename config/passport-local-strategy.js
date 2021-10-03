@@ -4,7 +4,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const User = require('../models/user');
 
 //authenticating using passport, see passport.js username & password section
-
+// During authentication jwt gets created
 passport.use(new LocalStrategy({
    usernameField :'email',
    passReqToCallback:true // adding req to parameter with email, passowrd, done
