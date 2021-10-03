@@ -2,11 +2,8 @@ const express = require('express');// it will not create new instance , it will 
 
 const router = express.Router();// it helps in separating routes and controller
 
-router.use('/posts',require('./posts'));
-router.use('/users',require('./users'));
+const usersApi = require('../../../controllers/api/v1/users_api');
 
+router.post('/create-session',usersApi.createSession);
 
-
-
-
-module.exports= router;
+module.exports =router;
