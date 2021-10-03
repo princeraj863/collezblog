@@ -21,8 +21,8 @@ const userSchema = new mongoose.Schema({
         required :true
     } ,
     avatar :{
-        type:String,
-        required: true
+        type:String
+        
     }
 },{
     timestamps : true//it keeps the track of when data got created and updated

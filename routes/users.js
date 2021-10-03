@@ -25,4 +25,14 @@ gets called*/
 
 router.get('/sign-out',usersController.destroySession);
 
+//when click on google sign-in it takes me there , data is fetched from there 
+router.get('/auth/google',passport.authenticate('google',{scope:['profile','email']}));
+//first argument 'google' is strategy, scope is the info which we are looking to fetch ,
+// email is not part of the profile , to get email you need permission to fetch
+
+//once signed in where to go
+// in this when data is fetched by google, send it back to me, on a route which is my callback url
+router.get('/auth/google/callback',passport.authenticate('google',{failureRedirect:'/users/sign-in'}),usersController.createSession);
+
+
 module.exports = router;

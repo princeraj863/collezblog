@@ -1,5 +1,5 @@
 const passport = require('passport');
-const googleStrategy = require('passport-google-oauth');
+const googleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const crypto = require('crypto');
 const User = require('../models/user');
 
@@ -14,7 +14,7 @@ passport.use(new googleStrategy({
    function(accessToken,refreshToken,profile,done){
        //a user can have multile gmail, profile.email gives an array of emails, here checking first email
        // find user
-       User.findOne({email:profile.emails[0].value.exec(function(err,user){
+       User.findOne({email:profile.emails[0].value}).exec(function(err,user){
             if(err){console.log('error in google-Strategy-passport',err); return ;}
 
             console.log(profile);
@@ -26,7 +26,7 @@ passport.use(new googleStrategy({
                 //if not found , create the user and set it as req.user
                 User.create({
                     name:profile.displayName ,
-                    email:profile.email[0].value,
+                    email:profile.emails[0].value,
                     password : crypto.randomBytes(20).toString('hex') // length 20 and hex is hexadecimal
                 },function(err,user){
                     if(err){console.log('error in google-Strategy-passport',err); return ;}
@@ -34,7 +34,7 @@ passport.use(new googleStrategy({
                     return done(null,user);
                 });
             }
-       }) });
+       }) ;
    }
 
    
