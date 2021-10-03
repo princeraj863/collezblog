@@ -6,7 +6,7 @@ const User = require('../models/user');
 
 //encrypt using key,opts here is options
 let opts = {
-    jwtFromRequest : ExtractJwt.fromAuthHeaderAsBearerToken  ,
+    jwtFromRequest : ExtractJwt.fromAuthHeaderAsBearerToken() ,
     //header is a ist of keys,header has a key called authrization , authorization also has list of keys,
     // it has key called bearer,this bearer will have jwt token
 
