@@ -1,5 +1,6 @@
 const Comment = require('../models/comment');
 const Post = require('../models/post');
+const commentsMailer = require('../mailers/commets_mailer');
 
 module.exports.create = async function(req,res){
     try{
@@ -17,8 +18,9 @@ module.exports.create = async function(req,res){
                 post.comments.push(comment);
                  
                 post.save();//it tells the database it's final version so save it, before that it remains in ram
-                
-                console.log(comment);
+                comment = await comment.populate('user');
+               // console.log(comment.user);
+               // commentsMailer.newComment(comment.user.email);
                 if(req.xhr){
                 return res.status(200).json({ //returning json,it's returned with status 200 
                     data:{
