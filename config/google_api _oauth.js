@@ -1,7 +1,6 @@
 /*const nodemailer = require("nodemailer");
 const { google } = require("googleapis");
 const OAuth2 = google.auth.OAuth2;
-
 const oauth2Client = new OAuth2({
 
     clientID :"815581230556-sqpponqnthn8dlc87s2bul8tcovuht91.apps.googleusercontent.com",
