@@ -5,8 +5,8 @@ const User = require('../models/user');
 
 // tell passport t o use a new strategy for google login
 passport.use(new googleStrategy({
- clientID :"367208562468-mp0lgkn0p1pmfthgou44qbpusma9tlb3.apps.googleusercontent.com",
- clientSecret:"SM7x1UBKWXPN-mFuq3ygOlph",
+ clientID :"",
+ clientSecret:"",
  callbackURL :"http://localhost:8000/users/auth/google/callback"
 },
    //if access token expires then refresh token gives you new token, without asking the user
