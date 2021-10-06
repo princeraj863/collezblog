@@ -5,7 +5,6 @@ let newComment = function
 module.exports = newComment*/
 exports.newComment =(email)=>{
     console.log('inside newComment mailer',email);
-
     nodeMailer.transporter.sendMail({
         from:"princeraj863@gmail.com",
         to:email,
