@@ -1,17 +1,14 @@
-const express = require("express");
-const app = express();
-
 const dotenv = require("dotenv");
 dotenv.config({ path: "./config.env" }); //once defined here , we don't have to do it everywhere
-const port = process.env.PORT;
+const express = require("express");
 
 const cookieParser = require("cookie-parser");
-app.use(cookieParser());
 
+const app = express();
+
+const port = process.env.PORT;
 const expressLayouts = require("express-ejs-layouts");
-
 const db = require("./config/mongoose");
-const MongoStore = require("connect-mongo");
 
 //used for session cookie
 const session = require("express-session");
@@ -19,6 +16,7 @@ const passport = require("passport");
 const passportLocal = require("./config/passport-local-strategy");
 const passportJWT = require("./config/passport-jwt-strategy");
 const passportGoogle = require("./config/passport-google-oauth2-strategy");
+const MongoStore = require("connect-mongo");
 
 const sassMiddleware = require("node-sass-middleware");
 const flash = require("connect-flash"); // for flash message
@@ -39,6 +37,8 @@ app.use(
 app.use(express.urlencoded());
 /* app.use whenever used then it means middleware is called
   it takes request and convert form data and put it on request.body(in key:value pair) */
+
+app.use(cookieParser());
 
 app.use(express.static(process.env.asset_path));
 /* it will look for folder named assets in the directory and
