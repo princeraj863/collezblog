@@ -1,4 +1,4 @@
-const nodemailer = require("nodemailer");
+/*const nodemailer = require("nodemailer");
 const { google } = require("googleapis");
 const OAuth2 = google.auth.OAuth2;
 const oauth2Client = new OAuth2({
@@ -33,4 +33,4 @@ const mailOptions = {
 smtpTransport.sendMail(mailOptions, (error, response) => {
   error ? console.log(error) : console.log(response);
   smtpTransport.close();
-});
+});*/
